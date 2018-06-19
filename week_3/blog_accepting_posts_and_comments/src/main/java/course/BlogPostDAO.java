@@ -1,9 +1,15 @@
 package course;
 
+import static com.mongodb.client.model.Filters.eq;
+
+import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BlogPostDAO {
@@ -17,9 +23,7 @@ public class BlogPostDAO {
     public Document findByPermalink(String permalink) {
 
         // XXX HW 3.2,  Work Here
-        Document post = null;
-
-
+        Document post = postsCollection.find(eq("permalink", permalink)).first();
 
         return post;
     }
@@ -30,7 +34,9 @@ public class BlogPostDAO {
 
         // XXX HW 3.2,  Work Here
         // Return a list of DBObjects, each one a post from the posts collection
-        List<Document> posts = null;
+
+        List<Document> posts = postsCollection.find().into(new ArrayList<Document>());
+
 
         return posts;
     }
@@ -57,6 +63,22 @@ public class BlogPostDAO {
 
         // Build the post object and insert it
         Document post = new Document();
+
+        post.append("title", title)
+            .append("body", body)
+            .append("author", username)
+            .append("permalink", permalink)
+            .append("date", new SimpleDateFormat("YYYY-mm-ddTHH:MM:sssZ"))
+
+            .append("tags", tags)
+            .append("comments", Collections.emptyList());
+
+        try {
+            postsCollection.insertOne(post);
+        } catch (MongoWriteException e) {
+            e.printStackTrace();
+            throw e;
+        }
 
 
         return permalink;

@@ -1,0 +1,16 @@
+db.post.insert(
+{
+    "title" : "Martians to use MongoDB",
+    "author" : "andrew",
+    "body" : "Representatives from the planet.",
+    "permalink" : "martians_to_use_mongodb",
+    "tags" : [
+        "martians",
+        "seti",
+        "nosql",
+        "worlddomination"
+    ],
+    "comments" : [ ],
+    "date" : "2013-03-11T01:54:53.692Z"
+}
+)
