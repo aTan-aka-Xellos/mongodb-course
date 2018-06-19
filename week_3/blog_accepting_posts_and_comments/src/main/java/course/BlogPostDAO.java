@@ -10,6 +10,7 @@ import org.bson.Document;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class BlogPostDAO {
@@ -68,8 +69,7 @@ public class BlogPostDAO {
             .append("body", body)
             .append("author", username)
             .append("permalink", permalink)
-            .append("date", new SimpleDateFormat("YYYY-mm-ddTHH:MM:sssZ"))
-
+            .append("date", new Date())
             .append("tags", tags)
             .append("comments", Collections.emptyList());
 
