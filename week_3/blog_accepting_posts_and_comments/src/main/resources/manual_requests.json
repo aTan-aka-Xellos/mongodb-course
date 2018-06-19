@@ -1,4 +1,4 @@
-db.post.insert(
+db.posts.insert(
 {
     "title" : "Martians to use MongoDB",
     "author" : "andrew",
@@ -11,6 +11,10 @@ db.post.insert(
         "worlddomination"
     ],
     "comments" : [ ],
-    "date" : "2013-03-11T01:54:53.692Z"
+    "date" : "Tue Jun 19 02:03:40 EEST 2018"
 }
 )
+
+db.post.find({"permalink":"martians_to_use_mongodb"})
+
+

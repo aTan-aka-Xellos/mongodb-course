@@ -1,13 +1,13 @@
 package course;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Sorts.descending;
 
 import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -24,9 +24,7 @@ public class BlogPostDAO {
     public Document findByPermalink(String permalink) {
 
         // XXX HW 3.2,  Work Here
-        Document post = postsCollection.find(eq("permalink", permalink)).first();
-
-        return post;
+        return postsCollection.find(eq("permalink", permalink)).first();
     }
 
     // Return a list of posts in descending order. Limit determines
@@ -36,10 +34,10 @@ public class BlogPostDAO {
         // XXX HW 3.2,  Work Here
         // Return a list of DBObjects, each one a post from the posts collection
 
-        List<Document> posts = postsCollection.find().into(new ArrayList<Document>());
-
-
-        return posts;
+        return postsCollection.find()
+            .sort(descending("date"))
+            .limit(limit)
+            .into(new ArrayList<Document>());
     }
 
 
@@ -79,7 +77,6 @@ public class BlogPostDAO {
             e.printStackTrace();
             throw e;
         }
-
 
         return permalink;
     }
