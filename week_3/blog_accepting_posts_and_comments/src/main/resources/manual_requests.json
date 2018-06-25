@@ -4,17 +4,17 @@ db.posts.insert(
     "author" : "andrew",
     "body" : "Representatives from the planet.",
     "permalink" : "martians_to_use_mongodb",
-    "tags" : [
+    "tags" : [BlogPostsDAO
         "martians",
         "seti",
         "nosql",
         "worlddomination"
     ],
     "comments" : [ ],
-    "date" : "Tue Jun 19 02:03:40 EEST 2018"
+    "date" : ISODate("2013-03-11T01:54:53.692Z")
 }
 )
 
-db.post.find({"permalink":"martians_to_use_mongodb"})
+db.posts.find({"permalink":"martians_to_use_mongodb"})
 
 
